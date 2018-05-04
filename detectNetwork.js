@@ -40,32 +40,34 @@ var detectNetwork = function(cardNumber) {
   var firstThreeCardDigits = cardNumber[0] + cardNumber[1] + cardNumber[2];
   var firstFourCardDigits = cardNumber[0] + cardNumber[1] + cardNumber[2] + cardNumber[3];
 
+  var dinersClubPrefixes = ['38', '39'];
+  var americanExpressPrefixes = ['34', '37'];
+  var visaPrefixes = ['4'];
+  var masterCardPrefixes = ['51', '52', '53', '54', '55'];
+
   if(cardNumberLength === 14){
-  	if(firstTwoCardDigits === '38' || '39'){
+  	if(dinersClubPrefixes.includes(firstTwoCardDigits)){
   	  return 'Diner\'s Club';
   	}
 
   } else if(cardNumberLength === 15){
-  	  if(firstTwoCardDigits === '34' || '37'){
+  	  if(americanExpressPrefixes.includes(firstTwoCardDigits)){
   	    return 'American Express';
   	  }
 
   } else if(cardNumberLength === 13 || 16 || 19){
-      if(firstCardDigit === '4'){
+      if(visaPrefixes.includes(firstCardDigit)){
       	return 'Visa';
       } else if(cardNumberLength === 16 || 19){
-          if(firstTwoCardDigits = '51' || '52' || '53' || '54' || '55'){
+          if(masterCardPrefixes.includes(firstTwoCardDigits)){
           	return 'MasterCard';
           } else if(firstTwoCardDigits === '65'){
           	return 'Discover';
-          } else if(firstThreeCardDigits >= 644 && firstThreeCardDigits <= 649){
+          } else if(firstThreeCardDigits === ('644' || '645' || '646' || '647' || '648' || '649')){
           	return 'Discover';
-          } else if(firstFourCardDigits === 6011){
+          } else if(firstFourCardDigits === '6011'){
           	return 'Discover';
           }
       }
   }  
 };
-
-
-
