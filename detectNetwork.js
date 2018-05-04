@@ -17,7 +17,8 @@ Function Notes:
    American Express network always starts with a 34 or 37 and is 15 digits long
    Visa always has a prefix of 4 and a length of 13, 16, or 19.
    MasterCard always has a prefix of 51, 52, 53, 54, or 55 and a length of 16.
-   
+   Discover always has a prefix of 6011, 644-649, or 65, and a length of 16 or 19.
+
   Once you've read this, go ahead and try to implement this function, then return to the console.
 
 Execution: 
@@ -32,24 +33,39 @@ Example string: '343456789012345'
 */
 
 var detectNetwork = function(cardNumber) {
+
   var cardNumberLength = cardNumber.length; 
-  var cardNumberPrefix = cardNumber[0] + cardNumber[1];
+  var firstCardDigit = cardNumber[0];
+  var firstTwoCardDigits= cardNumber[0] + cardNumber[1];
+  var firstThreeCardDigits = cardNumber[0] + cardNumber[1] + cardNumber[2];
+  var firstFourCardDigits = cardNumber[0] + cardNumber[1] + cardNumber[2] + cardNumber[3];
 
   if(cardNumberLength === 14){
-  	if(cardNumberPrefix === '38' || '39'){
+  	if(firstTwoCardDigits === '38' || '39'){
   	  return 'Diner\'s Club';
   	}
+
   } else if(cardNumberLength === 15){
-  	  if(cardNumberPrefix === '34' || '37'){
+  	  if(firstTwoCardDigits === '34' || '37'){
   	    return 'American Express';
   	  }
+
   } else if(cardNumberLength === 13 || 16 || 19){
-      if(cardNumberPrefix[0] === '4'){
+      if(firstCardDigit === '4'){
       	return 'Visa';
-      } else if(cardNumberLength === 16){
-          if(cardNumberPrefix === '51' || '52' || '53' || '54' || '55'){
-      	    return 'MasterCard';
+      } else if(cardNumberLength === 16 || 19){
+          if(firstTwoCardDigits = '51' || '52' || '53' || '54' || '55'){
+          	return 'MasterCard';
+          } else if(firstTwoCardDigits === '65'){
+          	return 'Discover';
+          } else if(firstThreeCardDigits >= 644 && firstThreeCardDigits <= 649){
+          	return 'Discover';
+          } else if(firstFourCardDigits === 6011){
+          	return 'Discover';
           }
       }
-  }
-};  
+  }  
+};
+
+
+
