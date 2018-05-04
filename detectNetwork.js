@@ -44,6 +44,7 @@ var detectNetwork = function(cardNumber) {
   var americanExpressPrefixes = ['34', '37'];
   var visaPrefixes = ['4'];
   var masterCardPrefixes = ['51', '52', '53', '54', '55'];
+  var discoverCardPrefixes = ['6011', '644', '645', '646', '647', '648', '649', '65'];
 
   if(cardNumberLength === 14){
   	if(dinersClubPrefixes.includes(firstTwoCardDigits)){
@@ -61,11 +62,11 @@ var detectNetwork = function(cardNumber) {
       } else if(cardNumberLength === 16 || 19){
           if(masterCardPrefixes.includes(firstTwoCardDigits)){
           	return 'MasterCard';
-          } else if(firstTwoCardDigits === '65'){
+          } else if(discoverCardPrefixes.includes(firstTwoCardDigits)){
           	return 'Discover';
-          } else if(firstThreeCardDigits === ('644' || '645' || '646' || '647' || '648' || '649')){
+          } else if(discoverCardPrefixes.includes(firstThreeCardDigits)){
           	return 'Discover';
-          } else if(firstFourCardDigits === '6011'){
+          } else if(discoverCardPrefixes.includes(firstFourCardDigits)){
           	return 'Discover';
           }
       }

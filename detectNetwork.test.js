@@ -75,6 +75,7 @@ describe('American Express', function() {
   it('has a prefix of 37 and a length of 15', function() {
     assert(detectNetwork('373456789012345') === 'American Express');
   });
+
 });
 
 describe('Visa', function() {
@@ -148,6 +149,62 @@ describe('Discover', function() {
   it('has a prefix of 6011 and a length of 19', function(){
     detectNetwork('6011284620583768393').should.equal('Discover');
   });
+
+  it('has a prefix of 65 and a length of 16', function(){
+    detectNetwork('6582947581098573').should.equal('Discover');
+  })
+
+  it('has a prefix of 65 and a length of 19', function(){
+    detectNetwork('6582947581098500073').should.equal('Discover');
+  })
+
+  it('has a prefix of 644 and a length of 16', function(){
+    detectNetwork('6442947581098573').should.equal('Discover');
+  })
+
+  it('has a prefix of 644 and a length of 19', function(){
+    detectNetwork('6442947581098500073').should.equal('Discover');
+  })
+
+  it('has a prefix of 645 and a length of 16', function(){
+    detectNetwork('6452947581098573').should.equal('Discover');
+  })
+
+  it('has a prefix of 645 and a length of 19', function(){
+    detectNetwork('6452947581098500073').should.equal('Discover');
+  })
+
+    it('has a prefix of 646 and a length of 16', function(){
+    detectNetwork('6462947581098573').should.equal('Discover');
+  })
+
+  it('has a prefix of 646 and a length of 19', function(){
+    detectNetwork('6462947581098500073').should.equal('Discover');
+  })
+
+    it('has a prefix of 647 and a length of 16', function(){
+    detectNetwork('6472947581098573').should.equal('Discover');
+  })
+
+  it('has a prefix of 647 and a length of 19', function(){
+    detectNetwork('6472947581098500073').should.equal('Discover');
+  })
+
+    it('has a prefix of 648 and a length of 16', function(){
+    detectNetwork('6482947581098573').should.equal('Discover');
+  })
+
+  it('has a prefix of 648 and a length of 19', function(){
+    detectNetwork('6482947581098500073').should.equal('Discover');
+  })
+
+    it('has a prefix of 649 and a length of 16', function(){
+    detectNetwork('6492947581098573').should.equal('Discover');
+  })
+
+  it('has a prefix of 649 and a length of 19', function(){
+    detectNetwork('6492947581098500073').should.equal('Discover');
+  })
 });
 
 describe('Maestro', function() {
