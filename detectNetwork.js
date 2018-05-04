@@ -19,6 +19,8 @@ Function Notes:
    MasterCard always has a prefix of 51, 52, 53, 54, or 55 and a length of 16.
    Discover always has a prefix of 6011, 644-649, or 65, and a length of 16 or 19.
 
+   Maestro always has a prefix of 5018, 5020, 5038, or 6304, and a length of 12-19.
+
   Once you've read this, go ahead and try to implement this function, then return to the console.
 
 Execution: 
@@ -45,30 +47,37 @@ var detectNetwork = function(cardNumber) {
   var visaPrefixes = ['4'];
   var masterCardPrefixes = ['51', '52', '53', '54', '55'];
   var discoverCardPrefixes = ['6011', '644', '645', '646', '647', '648', '649', '65'];
+  var maestroCardPrefixes = ['5018', '5020', '5038', '6304']
 
-  if(cardNumberLength === 14){
-  	if(dinersClubPrefixes.includes(firstTwoCardDigits)){
+  if(dinersClubPrefixes.includes(firstTwoCardDigits)){
+  	if(cardNumberLength === 38 | 39){
   	  return 'Diner\'s Club';
   	}
 
-  } else if(cardNumberLength === 15){
-  	  if(americanExpressPrefixes.includes(firstTwoCardDigits)){
+  } else if(americanExpressPrefixes.includes(firstTwoCardDigits)){
+  	  if(cardNumberLength === 15){
   	    return 'American Express';
   	  }
-
-  } else if(cardNumberLength === 13 || 16 || 19){
-      if(visaPrefixes.includes(firstCardDigit)){
-      	return 'Visa';
-      } else if(cardNumberLength === 16 || 19){
-          if(masterCardPrefixes.includes(firstTwoCardDigits)){
-          	return 'MasterCard';
-          } else if(discoverCardPrefixes.includes(firstTwoCardDigits)){
-          	return 'Discover';
-          } else if(discoverCardPrefixes.includes(firstThreeCardDigits)){
-          	return 'Discover';
-          } else if(discoverCardPrefixes.includes(firstFourCardDigits)){
-          	return 'Discover';
-          }
+  	  	  
+  } else if(visaPrefixes.includes(firstCardDigit)){
+      if(cardNumberLength === 13 || 16 || 19){
+        return 'Visa';
       }
-  }  
+      	  
+  } else if(masterCardPrefixes.includes(firstTwoCardDigits)){
+  	  if(cardNumberLength === 16){
+  	    return 'MasterCard';
+  	  }
+  	  	  
+  } else if(discoverCardPrefixes.includes(firstTwoCardDigits) || discoverCardPrefixes.includes(firstThreeCardDigits) || discoverCardPrefixes.includes(firstFourCardDigits)){
+      if(cardNumberLength === 16 || 19){
+        return 'Discover';
+      }
+      	 
+  } else if(maestroCardPrefixes.includes(firstFourCardDigits)){
+  	  if(cardNumberLength >= 12 || cardNumberLength <=19){
+  	    return 'Maestro';
+  	  }
+  }
 };
+
