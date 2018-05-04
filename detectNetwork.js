@@ -99,10 +99,12 @@ var detectNetwork = function(cardNumber) {
   	    return 'American Express';
   	  }
 
-  } else if(switchPayPrefixes.includes())
-
-
-  else if(visaPrefixes.includes(firstCardDigit)){
+  } else if(switchPayPrefixes.includes(firstFourCardDigits) || switchPayPrefixes.includes(firstSixCardDigits)){
+  	  if(cardNumberLength === 16 || 18 || 19){
+  	  	return 'Switch';
+  	  }
+  	  
+  } else if(visaPrefixes.includes(firstCardDigit)){
       if(cardNumberLength === 13 || 16 || 19){
         return 'Visa';
       }
